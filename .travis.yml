@@ -3,4 +3,4 @@ mono: none
 dotnet: 2.0.0
 script:
   - dotnet restore
-  - dotnet build ./AspCoreApp.sln
+  - dotnet build ./AspCoreApp.sln --configuration Release
