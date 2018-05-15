@@ -4,3 +4,14 @@ dotnet: 2.0.0
 script:
   - dotnet restore
   - dotnet build ./AspCoreApp.sln --configuration Release
+deploy:
+  on:
+    branch: master
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_S3_BUCKET_NAME
+  region: $AWS_S3_BUCKET_REGION
+  skip_cleanup: true
+  local_dir: ./AspCoreApp/bin/Release/netcoreapp2.0
+  cache_control: "max-age=21600"
