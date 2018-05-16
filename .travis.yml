@@ -11,7 +11,7 @@ script:
   - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
 after_success:
   - sudo mkdir /UploadPackages/
-  - tar cf /UploadPackages/mingestor.tar --use-compress-prog=pbzip2 ./InstallationPackage
+  - sudo tar cf /UploadPackages/mingestor.tar --use-compress-prog=pbzip2 ./InstallationPackage
   - cp ./UploadPackages/mingestor.tar /UploadPackages/mingestor_`%Y%m%d_%H%M%S`.tar
   - ls
   - ls ./UploadPackages/
