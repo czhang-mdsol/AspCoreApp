@@ -6,11 +6,11 @@ branches:
   - master
 script:
   - dotnet restore --source https://api.nuget.org/v3/index.json --source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
-  - dotnet build ./AspCoreApp.sln --configuration Release
+  - dotnet build AspCoreApp.sln --configuration Release
   - sudo rm -r -f /InstallationPackage/
-  - dotnet publish ./AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ./InstallationPackage
-  - tar cf InstallationPackage.tar --use-compress-prog=pbzip2 ./InstallationPackage
-  - ll
+  - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
+  - tar cf InstallationPackage.tar --use-compress-prog=pbzip2 /InstallationPackage
+  - ls
 deploy:
   on:
     branch: master
