@@ -12,7 +12,7 @@ script:
   - ls ./InstallationPackage/
 after_success:
   - sudo mkdir ./UploadPackages/
-  - sudo tar cf ./UploadPackages/mingestor.tar --use-compress-prog=pbzip2 ./InstallationPackage
+  - sudo tar zcf ./UploadPackages/mingestor.tar ./InstallationPackage
   - cp ./UploadPackages/mingestor.tar ./UploadPackages/mingestor_`%Y%m%d_%H%M%S`.tar
   - ls
   - ls ./InstallationPackage
