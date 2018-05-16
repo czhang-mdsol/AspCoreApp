@@ -9,8 +9,12 @@ script:
   - dotnet build AspCoreApp.sln --configuration Release
   - sudo rm -r -f /InstallationPackage/
   - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
-  - tar cf InstallationPackage.tar --use-compress-prog=pbzip2 /InstallationPackage
+after_success:
+  - mkdir /UploadPackages/
+  - tar cf /UploadPackages/mingestor.tar --use-compress-prog=pbzip2 /InstallationPackage
+  - cp /UploadPackages/mingestor.tar /UploadPackages/mingestor_`%Y%m%d_%H%M%S`.tar
   - ls
+  - ls /UploadPackages/
 deploy:
   on:
     branch: master
@@ -20,5 +24,5 @@ deploy:
   bucket: $AWS_S3_BUCKET_NAME
   region: $AWS_S3_BUCKET_REGION
   skip_cleanup: true
-  local_dir: ./AspCoreApp/bin/Release/netcoreapp2.0
+  local_dir: /UploadPackages/
   cache_control: "max-age=21600"
