@@ -5,10 +5,10 @@ branches:
   only:
   - master
 install:
-  - sudo apt remove nuget
-  - sudo apt install nuget
+  - sudo apt-get install mono-complete
+  - wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 script:
-  - nuget sources Add -Name "MDSOL" -Source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
+  - mono nuget.exe sources Add -Name "MDSOL" -Source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
   - dotnet restore
   - dotnet build ./AspCoreApp.sln --configuration Release
 deploy:
