@@ -7,8 +7,8 @@ branches:
 script:
   - dotnet restore --source https://api.nuget.org/v3/index.json --source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
   - dotnet build AspCoreApp.sln --configuration Release
-  - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
 before_deploy:
+  - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
   - sudo mkdir ./UploadPackages/
   - sudo tar zcf ./UploadPackages/mingestor.tar ./InstallationPackage
   - sudo cp ./UploadPackages/mingestor.tar ./UploadPackages/mingestor_${TRAVIS_BUILD_NUMBER}_${TRAVIS_BRANCH}_$(date +"%Y%m%d_%H%M%S").tar
