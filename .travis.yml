@@ -4,8 +4,11 @@ dotnet: 2.0.0
 branches:
   only:
   - master
+install:
+  - sudo apt remove nuget
+  - sudo apt install nuget
 script:
-  - nuget.exe sources Add -Name "MDSOL" -Source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
+  - nuget sources Add -Name "MDSOL" -Source https://imedidata.myget.org/F/mdsol/auth/$MDSOL_NUGET_ACCESS_TOKEN/api/v3/index.json
   - dotnet restore
   - dotnet build ./AspCoreApp.sln --configuration Release
 deploy:
