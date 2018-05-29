@@ -15,7 +15,7 @@ Invoke-Expression "$scriptDir\Turn-Off-Site.ps1 -siteAlias '$applicationName'"
 
 #update configuration settings before deploying
 cd $env:DeployPackageLocation
-dotnet DiceBag.dll
+###dotnet DiceBag.dll
 cd $scriptDir
 
 #create website
