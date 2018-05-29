@@ -12,7 +12,7 @@ before_deploy:
   - dotnet publish AspCoreApp/AspCoreApp.csproj --configuration Release --framework netcoreapp2.0 --no-restore --output ../InstallationPackage
   - sudo mkdir ./UploadPackages/
   - sudo 7z a -t7z -r ./UploadPackages/mingestor.zip ./InstallationPackage/ ./_DeploymentScripts/
-  - sudo cp ./UploadPackages/mingestor.zip ./UploadPackages/mingestor_${TRAVIS_BRANCH}_${TRAVIS_COMMIT:0:7}_$(date +"%Y%m%d_%H%M%S").zip
+  - sudo cp ./UploadPackages/mingestor.zip ./UploadPackages/mingestor_${TRAVIS_BRANCH//[///\]/_}_${TRAVIS_COMMIT:0:7}_$(date +"%Y%m%d_%H%M%S").zip
 deploy:
   on:
     branch: master
