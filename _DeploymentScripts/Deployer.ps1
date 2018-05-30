@@ -35,7 +35,7 @@ Invoke-Expression "$scriptDir\Deploy-WebSite.ps1 -packageLocation '$env:DeployPa
 Invoke-Expression "$scriptDir\Turn-On-Site.ps1 -siteAlias '$applicationName'"
 
 #backup site director
-Invoke-Expression "$scriptDir\Backup-Directory.ps1 -source $env:ApplicationDirectory -destinationRootFolder $env:ApplicationRootDirectory"
+Invoke-Expression "$scriptDir\Backup-Directory.ps1 -source $env:ApplicationDirectory -destinationRootFolder $env:ApplicationBackupDirectory"
 
 #iis reset
 Invoke-Command -scriptblock {iisreset}
